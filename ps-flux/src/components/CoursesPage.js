@@ -3,6 +3,7 @@ import CourseList from "./CourseList";
 import {Link} from "react-router-dom";
 import courseStore from "../stores/courseStore";
 import {loadCourses, deleteCourse} from "../actions/courseActions";
+import {toast} from "react-toastify";
 
 
 function CoursesPage() {
@@ -22,7 +23,10 @@ function CoursesPage() {
     }
 
     function handleDelete(event) {
-        deleteCourse(event.target.value);
+        deleteCourse(event.target.value)
+            .then(() => {
+                toast.warn("Course Deleted");
+            });
     }
 
     return (
